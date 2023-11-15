@@ -92,11 +92,11 @@ function DisplayCell({cell, index, play}: { cell: Cell, index: number, play: (x:
      * @see https://reactjs.org/docs/lists-and-keys.html#keys
      */
     return (
-        <div className={`cell ${playableText}`} onClick={() => play(cell.x, cell.y)}>{cell.text}</div>
+        <div className={`cell ${playableText}`} key={`${index}`} onClick={() => play(cell.x, cell.y)}>{cell.text}</div>
     )
   else
     return (
-      <div className={`cell ${playableText}`}>{cell.text}</div>
+      <div className={`cell ${playableText}`} key={`${index}`}>{cell.text}</div>
     )
 }
 

@@ -26,6 +26,7 @@ public class App extends NanoHTTPD {
 
     /**
      * Start the server at :8080 port.
+     * 
      * @throws IOException
      */
     public App() throws IOException {
@@ -33,10 +34,9 @@ public class App extends NanoHTTPD {
 
         this.game = new GameFrameworkImpl();
         plugins = loadPlugins();
-        for (GamePlugin p: plugins){
+        for (GamePlugin p : plugins) {
             game.registerPlugin(p);
         }
-
 
         start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
         System.out.println("\nRunning! Point your browsers to http://localhost:8080/ \n");
@@ -49,12 +49,12 @@ public class App extends NanoHTTPD {
         if (uri.equals("/plugin")) {
             // e.g., /plugin?i=0
             game.startNewGame(plugins.get(Integer.parseInt(params.get("i"))));
-        } else if (uri.equals("/play")){
+        } else if (uri.equals("/play")) {
             // e.g., /play?x=1&y=1
             if (game.hasGame()) {
                 game.playMove(Integer.parseInt(params.get("x")), Integer.parseInt(params.get("y")));
             }
-        } else if (uri.equals("/start")){
+        } else if (uri.equals("/start")) {
 
         }
         // Extract the view-specific data from the game and apply it to the template.
@@ -62,7 +62,6 @@ public class App extends NanoHTTPD {
         return newFixedLengthResponse(gameplay.toString());
 
     }
-
 
     /**
      * Load plugins listed in META-INF/services/...
@@ -85,4 +84,3 @@ public class App extends NanoHTTPD {
         }
     }
 }
-
